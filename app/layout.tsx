@@ -18,6 +18,17 @@ export const metadata: Metadata = {
   title: "Monisola Adejo | UGC Creator in Ontario, Canada",
   description:
     "Ontario-based UGC creator Monisola Adejo creates on-camera video, product demonstrations, voiceovers, product photography and paid social creative for consumer brands.",
+  openGraph: {
+    title: "Monisola Adejo | UGC Creator in Ontario, Canada",
+    description: "On camera. On brief. On point.",
+    images: [{ url: "/og.png", width: 1680, height: 945, alt: "Monisola Adejo, UGC Creator and Your Agile Nurse." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Monisola Adejo | UGC Creator in Ontario, Canada",
+    description: "On camera. On brief. On point.",
+    images: ["/og.png"],
+  },
   robots: {
     index: false,
     follow: false,

@@ -8,6 +8,21 @@ const aboutPortrait = portraits.find((portrait) => portrait.id === "nursing-cont
 const editorialPortrait = portraits.find((portrait) => portrait.id === "fuchsia-editorial-full")!;
 const featuredWork = publicVideos.find((video) => video.id === "creator-introduction")!;
 
+const productPhotos = [
+  {
+    src: "/media/photography/victorias-secret-fragrance-flatlay.jpg",
+    alt: "Victoria's Secret Love Spell and Candied Berry Wonderland fragrance mists styled with pastel flowers.",
+    eyebrow: "Fragrance flat lay",
+    title: "Colour, composition and product detail.",
+  },
+  {
+    src: "/media/photography/beauty-essentials-flatlay.jpg",
+    alt: "Burt's Bees skincare, nail products and accessories arranged in a soft pastel flat lay.",
+    eyebrow: "Beauty flat lay",
+    title: "Everyday products, styled with care.",
+  },
+];
+
 const offerings = [
   ["On-camera video", "Direct, comfortable delivery for product introductions, reviews, testimonials, FAQs, demonstrations and founder-style messages."],
   ["Product demonstrations and tutorials", "Clear footage that shows how the product works, what the customer receives and how it fits into use."],
@@ -95,6 +110,10 @@ export default function Home() {
           <div className="work-grid">
             {publicVideos.filter((video) => video.id !== featuredWork.id).map((video, index) => <article className={`work-card work-card-${index + 1}`} key={video.id}><div className="work-video"><AutoplayVideo src={video.src} poster={video.poster} label={`${video.title} portfolio video`} captions={video.id === "makeup-routine" ? "/media/captions/makeup-routine.vtt" : undefined} /><span className="work-number">0{index + 1}</span><span className="preview-tag">Muted preview</span></div><div className="work-copy"><p>{video.creativeFunction}</p><h3>{video.title}</h3><span className="duration">{video.duration}</span></div></article>)}
           </div>
+          <section className="photography-showcase" aria-labelledby="photography-title">
+            <div className="photography-heading"><p className="eyebrow">Product photography</p><h3 id="photography-title">Styled product moments with a point of <em>view.</em></h3><p>Thoughtful flat lays with colour, texture and a clear focus on what makes the product feel special.</p></div>
+            <div className="photography-grid">{productPhotos.map((photo, index) => <figure className={`product-photo product-photo-${index + 1}`} key={photo.src}><Image src={photo.src} alt={photo.alt} width={1400} height={1800} unoptimized sizes="(max-width: 640px) 100vw, 50vw" /><figcaption><span>{photo.eyebrow}</span><strong>{photo.title}</strong></figcaption></figure>)}</div>
+          </section>
         </section>
 
         <section className="visual-editorial" aria-labelledby="visual-editorial-title">
