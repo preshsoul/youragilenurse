@@ -21,17 +21,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Monisola Adejo | UGC Creator in Ontario, Canada",
     description: "On camera. On brief. On point.",
-    images: [{ url: "/og.png", width: 1680, height: 945, alt: "Monisola Adejo, UGC Creator and Your Agile Nurse." }],
+    images: [{ url: "/og-v2.png", width: 1680, height: 945, alt: "Monisola Adejo — UGC Creator, Nurse and Mom." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Monisola Adejo | UGC Creator in Ontario, Canada",
     description: "On camera. On brief. On point.",
-    images: ["/og.png"],
+    images: ["/og-v2.png"],
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
   icons: {
     icon: "/favicon.svg",

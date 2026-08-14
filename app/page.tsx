@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AutoplayVideo from "./autoplay-video";
+import PortfolioGrid from "./portfolio-grid";
 import VideoRail from "./video-rail";
 import { portraits, publicVideos } from "./media-register";
 
@@ -70,7 +71,7 @@ export default function Home() {
     <>
       <a className="skip-link" href="#main">Skip to main content</a>
       <header className="site-header" aria-label="Primary navigation">
-        <a className="wordmark" href="#top" aria-label="Monisola Adejo home"><span>MONISOLA ADEJO</span><small>Your Agile Nurse</small></a>
+        <a className="wordmark" href="#top" aria-label="Monisola Adejo home"><span>MONISOLA ADEJO</span><small>UGC Creator | Nurse | Mom</small></a>
         <nav className="nav-links" aria-label="Page sections">
           <a href="#work">Work</a><a href="#create">What I Create</a><a href="#about">About</a><a href="#process">How It Works</a><a href="#contact">Contact</a>
         </nav>
@@ -106,10 +107,7 @@ export default function Home() {
             <div className="featured-video" id="featured-video"><AutoplayVideo controls src={featuredWork.src} poster={featuredWork.poster} label="Monisola's creator pitch video" /><span className="film-tag">My pitch</span><span className="silent-tag">Tap for sound</span></div>
             <div className="featured-copy"><p className="eyebrow">Creator introduction</p><h3>Hi, I’m <em>Monisola.</em></h3><p>A direct-to-camera introduction that shows the personable, clear and confident presence I bring to brand content.</p><dl><div><dt>Format</dt><dd>Vertical video</dd></div><div><dt>Run time</dt><dd>28.60 seconds</dd></div><div><dt>Creative focus</dt><dd>On-camera pitch and creator presence</dd></div></dl><a className="inline-link" href="#featured-video">Play my pitch <span aria-hidden="true">↓</span></a></div>
           </article>
-          <div className="filter-row" aria-label="Portfolio categories"><span>All</span><span>On Camera</span><span>Product Demo</span><span>Voiceover</span><span>Product Detail</span><span>Lifestyle</span><span>Photography</span></div>
-          <div className="work-grid">
-            {publicVideos.filter((video) => video.id !== featuredWork.id).map((video, index) => <article className={`work-card work-card-${index + 1}`} key={video.id}><div className="work-video"><AutoplayVideo src={video.src} poster={video.poster} label={`${video.title} portfolio video`} captions={video.id === "makeup-routine" ? "/media/captions/makeup-routine.vtt" : undefined} /><span className="work-number">0{index + 1}</span><span className="preview-tag">Muted preview</span></div><div className="work-copy"><p>{video.creativeFunction}</p><h3>{video.title}</h3><span className="duration">{video.duration}</span></div></article>)}
-          </div>
+          <PortfolioGrid videos={publicVideos.filter((video) => video.id !== featuredWork.id)} />
           <section className="photography-showcase" aria-labelledby="photography-title">
             <div className="photography-heading"><p className="eyebrow">Product photography</p><h3 id="photography-title">Styled product moments with a point of <em>view.</em></h3><p>Thoughtful flat lays with colour, texture and a clear focus on what makes the product feel special.</p></div>
             <div className="photography-grid">{productPhotos.map((photo, index) => <figure className={`product-photo product-photo-${index + 1}`} key={photo.src}><Image src={photo.src} alt={photo.alt} width={1400} height={1800} unoptimized sizes="(max-width: 640px) 100vw, 50vw" /><figcaption><span>{photo.eyebrow}</span><strong>{photo.title}</strong></figcaption></figure>)}</div>
@@ -144,7 +142,7 @@ export default function Home() {
 
         <section className="contact-section" id="contact" aria-labelledby="contact-title"><p className="eyebrow">Let’s make something clear</p><h2 id="contact-title">Tell me what you need the content to <em>do.</em></h2><p className="contact-intro">Send the product, the customer you need to reach, where the content will run and when you need it. I will respond with my fit for the project, the creative route I recommend and a quote.</p><div className="contact-actions"><a className="contact-link" href={`mailto:${email}?subject=UGC%20brief%20for%20Monisola%20Adejo`}>Send the Brief <span aria-hidden="true">↗</span></a><a className="contact-secondary" href={instagram} target="_blank" rel="noreferrer">Instagram DM <span aria-hidden="true">↗</span></a></div><div className="contact-details"><a href={`mailto:${email}`}>{email}</a><a href={instagram} target="_blank" rel="noreferrer">@youragilenurse1</a><a href={tiktok} target="_blank" rel="noreferrer">@youragilenurse</a></div></section>
       </main>
-      <footer className="site-footer"><a className="wordmark" href="#top"><span>MONISOLA ADEJO</span><small>Your Agile Nurse</small></a><p>UGC creator based in Ontario, Canada</p><p>© Monisola Adejo</p></footer>
+      <footer className="site-footer"><a className="wordmark" href="#top"><span>MONISOLA ADEJO</span><small>UGC Creator | Nurse | Mom</small></a><p>UGC creator based in Ontario, Canada</p><p>© Monisola Adejo</p></footer>
     </>
   );
 }

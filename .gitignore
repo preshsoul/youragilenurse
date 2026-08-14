@@ -43,3 +43,12 @@ yarn-error.log*
 /.chrome-check-profile*/
 /screenshots/
 /*check.png
+
+# Local audits, generated deployment bundles, and editor build state
+/media_audit/
+/site-deploy.tgz
+/*-dev.log
+/*-dev.err.log
+/*-dev.out.log
+/*dev*.log
+*.tsbuildinfo

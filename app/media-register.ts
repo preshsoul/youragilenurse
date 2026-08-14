@@ -1,4 +1,5 @@
 export type RightsStatus = "cleared" | "hold" | "confirm";
+export type PortfolioCategory = "on-camera" | "product-demo" | "lifestyle" | "product-detail";
 
 export type PortraitAsset = {
   id: string;
@@ -24,6 +25,7 @@ export type VideoAsset = {
     instagram?: string;
   };
   holdReason?: string;
+  categories?: PortfolioCategory[];
 };
 
 export const portraits: PortraitAsset[] = [
@@ -99,6 +101,7 @@ export const videos: VideoAsset[] = [
     creativeFunction: "Product handling and ordered sequencing",
     rightsStatus: "cleared",
     public: true,
+    categories: ["on-camera", "product-demo", "lifestyle"],
     originalLinks: {
       tiktok: "https://vt.tiktok.com/ZS4wBXxmg/",
       instagram: "https://www.instagram.com/reel/DbtjkA8iP57/?igsh=NDZuaDgwb2hmdjZw",
@@ -115,6 +118,7 @@ export const videos: VideoAsset[] = [
     creativeFunction: "Direct-to-camera tutorial and practical routine framing",
     rightsStatus: "cleared",
     public: true,
+    categories: ["on-camera", "product-demo", "lifestyle"],
     originalLinks: {
       tiktok: "https://vt.tiktok.com/ZS4wBMBnW/",
       instagram: "https://www.instagram.com/reel/Dbp7IJCgZuF/?igsh=ZjIwaWUybzFkM3Az",
@@ -131,6 +135,7 @@ export const videos: VideoAsset[] = [
     creativeFunction: "Hook delivery and expressive direct-to-camera energy",
     rightsStatus: "cleared",
     public: true,
+    categories: ["on-camera", "lifestyle"],
   },
   {
     id: "creator-introduction",
@@ -143,6 +148,7 @@ export const videos: VideoAsset[] = [
     creativeFunction: "Creator presence and filming setup context",
     rightsStatus: "cleared",
     public: true,
+    categories: ["on-camera"],
     originalLinks: {
       tiktok: "https://vt.tiktok.com/ZS4wkTeLg/",
       instagram: "https://www.instagram.com/reel/Dbq2zK2A7OZ/?igsh=MTUwbDZieXB2aDU3ag==",
@@ -159,6 +165,7 @@ export const videos: VideoAsset[] = [
     creativeFunction: "Compact product-detail unit",
     rightsStatus: "cleared",
     public: true,
+    categories: ["product-detail"],
   },
 ];
 

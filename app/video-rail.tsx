@@ -27,7 +27,6 @@ function scrollToSlide(rail: HTMLDivElement, index: number, behavior: ScrollBeha
 export default function VideoRail({ items }: VideoRailProps) {
   const railRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(-1);
-  const slides = items.length > 1 ? [...items, items[0]] : items;
 
   useEffect(() => {
     const rail = railRef.current;
@@ -54,47 +53,30 @@ export default function VideoRail({ items }: VideoRailProps) {
       rail.removeEventListener("scroll", syncActiveSlide);
       window.removeEventListener("resize", syncActiveSlide);
     };
-  }, [slides.length]);
+  }, [items.length]);
 
-  useEffect(() => {
-    if (items.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const moveToSlide = (direction: -1 | 1) => {
+    const rail = railRef.current;
+    if (!rail || items.length === 0) return;
 
-    let resetTimer: number | undefined;
-    const timer = window.setInterval(() => {
-      const rail = railRef.current;
-      if (!rail) return;
-
-      const current = activeSlide < 0 ? 0 : activeSlide;
-      const next = current + 1;
-
-      // Scroll only the rail, placing the selected clip precisely at its centre.
-      scrollToSlide(rail, next, "smooth");
-
-      if (next === items.length) {
-        resetTimer = window.setTimeout(() => {
-          const resetRail = railRef.current;
-          if (resetRail) scrollToSlide(resetRail, 0, "auto");
-        }, 700);
-      }
-    }, 5000);
-
-    return () => {
-      window.clearInterval(timer);
-      if (resetTimer) window.clearTimeout(resetTimer);
-    };
-  }, [activeSlide, items.length]);
+    const current = activeSlide < 0 ? 0 : activeSlide;
+    const next = (current + direction + items.length) % items.length;
+    setActiveSlide(next);
+    scrollToSlide(rail, next, "smooth");
+  };
 
   return (
     <div className="video-rail-shell">
-      <div ref={railRef} className="video-rail" aria-label="Selected UGC video samples" aria-live="off">
-        {slides.map((item, index) => (
-          <figure className="video-rail-card" key={`${item.id}-${index}`} aria-hidden={index === items.length || undefined}>
+      <div ref={railRef} className="video-rail" id="video-rail" aria-label="Selected UGC video previews" aria-live="off">
+        {items.map((item, index) => (
+          <figure className="video-rail-card" key={item.id} aria-hidden="true">
             <AutoplayVideo src={item.src} poster={item.poster} label={`${item.title} muted video preview`} captions={item.captions} active={index === activeSlide} />
-            <figcaption><span>{String((index % items.length) + 1).padStart(2, "0")}</span>{item.label}</figcaption>
+            <figcaption><span>{String(index + 1).padStart(2, "0")}</span>{item.label}</figcaption>
           </figure>
         ))}
       </div>
-      <p className="video-rail-hint">Moving portfolio previews — swipe or scroll to explore.</p>
+      {items.length > 1 && <div className="video-rail-controls"><button type="button" onClick={() => moveToSlide(-1)} aria-controls="video-rail" aria-label="Show previous video preview">←</button><button type="button" onClick={() => moveToSlide(1)} aria-controls="video-rail" aria-label="Show next video preview">→</button></div>}
+      <p className="video-rail-hint">Portfolio previews — swipe, scroll or use the arrow buttons to explore.</p>
     </div>
   );
 }

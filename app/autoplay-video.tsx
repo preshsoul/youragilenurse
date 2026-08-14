@@ -24,7 +24,7 @@ export default function AutoplayVideo({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!video) {
       return;
     }
 
@@ -48,12 +48,13 @@ export default function AutoplayVideo({
     const video = videoRef.current;
     if (!video || !shouldLoad) return;
 
-    video.muted = true;
-    if (!active) {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!active || prefersReducedMotion) {
       video.pause();
       return;
     }
 
+    video.muted = true;
     void video.play().catch(() => {
       // Device low-power/data-saving modes can refuse autoplay. The poster and
       // native controls remain available for an intentional play instead.
@@ -68,7 +69,7 @@ export default function AutoplayVideo({
       muted
       playsInline
       poster={poster}
-      preload="none"
+      preload={shouldLoad ? "metadata" : "none"}
       aria-label={label}
     >
       {shouldLoad && <source src={src} type="video/mp4" />}
@@ -78,6 +79,7 @@ export default function AutoplayVideo({
           kind="captions"
           srcLang="en"
           label="English captions"
+          default
         />
       )}
     </video>
