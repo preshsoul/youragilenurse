@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import AutoplayVideo from "./autoplay-video";
 
-type VideoRailItem = {
+export type VideoRailItem = {
   id: string;
   src: string;
   poster?: string;
