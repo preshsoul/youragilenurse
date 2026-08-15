@@ -79,7 +79,13 @@ export default function Home() {
           <summary>Menu <span aria-hidden="true">+</span></summary>
           <nav aria-label="Mobile page sections"><a href="#work">Work</a><a href="#create">What I Create</a><a href="#about">About</a><a href="#process">How It Works</a><a href="#contact">Contact</a></nav>
         </details>
-        <a className="nav-cta" href={`mailto:${email}?subject=UGC%20brief%20for%20Monisola%20Adejo`}>Send a Brief <span aria-hidden="true">↗</span></a>
+        <a className="nav-cta" href={`mailto:${email}?subject=UGC%20brief%20for%20Monisola%20Adejo`}>
+          Send a Brief
+          <svg className="nav-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m22 2-7 20-4-9-9-4Z" />
+            <path d="M22 2 11 13" />
+          </svg>
+        </a>
       </header>
 
       <main id="main">
