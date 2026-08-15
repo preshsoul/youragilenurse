@@ -63,7 +63,7 @@ const faqs = [
 ];
 
 const email = "youragilenurse@gmail.com";
-const instagram = "https://www.instagram.com/youragilenurse1?igsh=MXFpOHk5dzUzdXZicQ%3D%3D&utm_source=qr";
+const instagram = "https://www.instagram.com/youragilenurse";
 const tiktok = "https://www.tiktok.com/@youragilenurse?_r=1&_t=ZS-98oSoTNYOIC";
 
 export default function Home() {
@@ -146,7 +146,7 @@ export default function Home() {
 
         <section className="faq-section" aria-labelledby="faq-title"><div className="faq-heading"><p className="eyebrow">Frequently asked questions</p><h2 id="faq-title">Everything you need to know before you <em>brief.</em></h2></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
 
-        <section className="contact-section" id="contact" aria-labelledby="contact-title"><p className="eyebrow">Let’s make something clear</p><h2 id="contact-title">Tell me what you need the content to <em>do.</em></h2><p className="contact-intro">Send the product, the customer you need to reach, where the content will run and when you need it. I will respond with my fit for the project, the creative route I recommend and a quote.</p><div className="contact-actions"><a className="contact-link" href={`mailto:${email}?subject=UGC%20brief%20for%20Monisola%20Adejo`}>Send the Brief <span aria-hidden="true">↗</span></a><a className="contact-secondary" href={instagram} target="_blank" rel="noreferrer">Instagram DM <span aria-hidden="true">↗</span></a></div><div className="contact-details"><a href={`mailto:${email}`}>{email}</a><a href={instagram} target="_blank" rel="noreferrer">@youragilenurse1</a><a href={tiktok} target="_blank" rel="noreferrer">@youragilenurse</a></div></section>
+        <section className="contact-section" id="contact" aria-labelledby="contact-title"><p className="eyebrow">Let’s make something clear</p><h2 id="contact-title">Tell me what you need the content to <em>do.</em></h2><p className="contact-intro">Send the product, the customer you need to reach, where the content will run and when you need it. I will respond with my fit for the project, the creative route I recommend and a quote.</p><div className="contact-actions"><a className="contact-link" href={`mailto:${email}?subject=UGC%20brief%20for%20Monisola%20Adejo`}>Send the Brief <span aria-hidden="true">↗</span></a><a className="contact-secondary" href={instagram} target="_blank" rel="noreferrer">Instagram DM <span aria-hidden="true">↗</span></a></div><div className="contact-details"><a href={`mailto:${email}`}>{email}</a><a href={instagram} target="_blank" rel="noreferrer">@youragilenurse</a><a href={tiktok} target="_blank" rel="noreferrer">@youragilenurse</a></div></section>
       </main>
       <footer className="site-footer"><a className="wordmark" href="#top"><span>MONISOLA ADEJO</span><small>UGC Creator | Nurse | Mom</small></a><p>UGC creator based in Ontario, Canada</p><p>© Monisola Adejo</p></footer>
     </>

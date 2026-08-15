@@ -206,6 +206,19 @@ export const videos: VideoAsset[] = [
     public: true,
     categories: ["product-detail"],
   },
+  {
+    id: "extended-product-unboxing",
+    title: "45 seconds of Soft beautiful product detailing video",
+    src: "/media/videos/extended-product-unboxing-v2.mp4",
+    poster: "/media/posters/extended-product-unboxing-poster.jpg",
+    duration: "45.10 seconds",
+    dimensions: "576 x 1024",
+    relationship: "creator-owned portfolio footage",
+    creativeFunction: "Extended product unboxing video.",
+    rightsStatus: "cleared",
+    public: true,
+    categories: ["product-demo", "product-detail"],
+  },
 ];
 
 export const publicVideos = videos.filter(
