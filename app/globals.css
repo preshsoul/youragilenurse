@@ -56,3 +56,13 @@
 button:focus-visible{outline:3px solid var(--wine);outline-offset:4px}.filter-row button{padding:.42rem .7rem;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.56);color:var(--ink);cursor:pointer;font:inherit;font-size:.72rem;font-weight:800}.filter-row button[aria-pressed="true"]{border-color:var(--wine);background:var(--wine);color:#fff}.work-number{pointer-events:none}.video-rail-controls{display:flex;gap:.55rem;justify-content:center;margin:.5rem 0 .1rem}.video-rail-controls button{display:grid;place-items:center;width:2.55rem;height:2.55rem;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.75);color:var(--plum);cursor:pointer;font-size:1.1rem;font-weight:900;transition:transform .2s,background .2s}.video-rail-controls button:hover{transform:translateY(-2px);background:#fff}
 /* Keep the subject's face within the scrub-portrait crop. */
 .about-photo img{object-position:50% 0%}
+
+/* All Videos: a compact, predictable gallery rather than oversized editorial tiles. */
+.work-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.35rem,2.8vw,2.5rem);justify-items:center}
+.work-grid .work-card{grid-column:auto!important;width:100%;max-width:330px;margin:0!important}
+.work-grid .work-video{border-radius:.9rem}
+.work-grid .work-video video{aspect-ratio:9/11}
+.work-grid .work-copy{gap:.4rem;padding:.75rem .15rem 0}
+.work-grid .work-copy h3{max-width:none;font-size:clamp(1.3rem,1.65vw,1.6rem);line-height:1.02}
+@media(max-width:980px){.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.35rem}.work-grid .work-card{max-width:340px}}
+@media(max-width:640px){.work-grid{gap:1.2rem .85rem}.work-grid .work-video video{aspect-ratio:9/12}.work-grid .work-copy{padding-top:.6rem}.work-grid .work-copy p{font-size:.62rem}.work-grid .work-copy h3{font-size:clamp(1.05rem,5vw,1.28rem)}.work-grid .duration{font-size:.68rem}}
