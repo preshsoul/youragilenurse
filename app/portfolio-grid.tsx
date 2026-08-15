@@ -44,6 +44,7 @@ export default function PortfolioGrid({ videos }: PortfolioGridProps) {
           <article className={`work-card work-card-${index + 1}`} key={video.id}>
             <div className="work-video">
               <AutoplayVideo
+                active={index === 0}
                 controls
                 src={video.src}
                 poster={video.poster}

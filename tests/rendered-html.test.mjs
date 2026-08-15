@@ -39,10 +39,11 @@ test("server-renders the public portfolio", async () => {
 });
 
 test("keeps launch metadata and media controls aligned with the portfolio", async () => {
-  const [page, layout, autoplayVideo] = await Promise.all([
+  const [page, layout, autoplayVideo, mediaRegister] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/autoplay-video.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/media-register.ts", import.meta.url), "utf8"),
   ]);
 
   assert.match(page, /UGC Creator \| Nurse \| Mom/);
@@ -51,4 +52,7 @@ test("keeps launch metadata and media controls aligned with the portfolio", asyn
   assert.doesNotMatch(layout, /Your Agile Nurse/);
   assert.match(autoplayVideo, /controls=\{controls\}/);
   assert.match(autoplayVideo, /prefers-reduced-motion/);
+  assert.match(autoplayVideo, /shouldAvoidAutoplayOnCurrentConnection/);
+  assert.match(autoplayVideo, /rootMargin: "80px 0px"/);
+  assert.match(mediaRegister, /-v2\.mp4/);
 });

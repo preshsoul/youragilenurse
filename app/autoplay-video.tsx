@@ -11,6 +11,16 @@ type AutoplayVideoProps = {
   active?: boolean;
 };
 
+type NetworkInformation = {
+  effectiveType?: string;
+  saveData?: boolean;
+};
+
+function shouldAvoidAutoplayOnCurrentConnection() {
+  const connection = (navigator as Navigator & { connection?: NetworkInformation }).connection;
+  return connection?.saveData || ["slow-2g", "2g", "3g"].includes(connection?.effectiveType ?? "");
+}
+
 export default function AutoplayVideo({
   src,
   poster,
@@ -37,7 +47,7 @@ export default function AutoplayVideo({
           video.pause();
         }
       },
-      { rootMargin: "220px 0px", threshold: 0.18 },
+      { rootMargin: "80px 0px", threshold: 0.25 },
     );
 
     observer.observe(video);
@@ -49,7 +59,7 @@ export default function AutoplayVideo({
     if (!video || !shouldLoad) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!active || prefersReducedMotion) {
+    if (!active || prefersReducedMotion || shouldAvoidAutoplayOnCurrentConnection()) {
       video.pause();
       return;
     }

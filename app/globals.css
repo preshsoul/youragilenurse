@@ -54,3 +54,5 @@
 
 /* Portfolio controls are intentionally functional and keyboard-visible. */
 button:focus-visible{outline:3px solid var(--wine);outline-offset:4px}.filter-row button{padding:.42rem .7rem;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.56);color:var(--ink);cursor:pointer;font:inherit;font-size:.72rem;font-weight:800}.filter-row button[aria-pressed="true"]{border-color:var(--wine);background:var(--wine);color:#fff}.work-number{pointer-events:none}.video-rail-controls{display:flex;gap:.55rem;justify-content:center;margin:.5rem 0 .1rem}.video-rail-controls button{display:grid;place-items:center;width:2.55rem;height:2.55rem;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.75);color:var(--plum);cursor:pointer;font-size:1.1rem;font-weight:900;transition:transform .2s,background .2s}.video-rail-controls button:hover{transform:translateY(-2px);background:#fff}
+/* Keep the subject's face within the scrub-portrait crop. */
+.about-photo img{object-position:50% 0%}
