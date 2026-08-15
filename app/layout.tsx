@@ -15,19 +15,34 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://youragilenurse.vercel.app"),
   title: "Monisola Adejo | UGC Creator in Ontario, Canada",
   description:
     "Ontario-based UGC creator Monisola Adejo creates on-camera video, product demonstrations, voiceovers, product photography and paid social creative for consumer brands.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: "/",
+    siteName: "Monisola Adejo UGC",
     title: "Monisola Adejo | UGC Creator in Ontario, Canada",
     description: "On camera. On brief. On point.",
-    images: [{ url: "/og-v2.png", width: 1680, height: 945, alt: "Monisola Adejo — UGC Creator, Nurse and Mom." }],
+    images: [
+      {
+        url: "/og-share-v1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Monisola Adejo — UGC Creator, Nurse and Mom.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Monisola Adejo | UGC Creator in Ontario, Canada",
     description: "On camera. On brief. On point.",
-    images: ["/og-v2.png"],
+    images: ["/og-share-v1.jpg"],
   },
   robots: {
     index: true,
