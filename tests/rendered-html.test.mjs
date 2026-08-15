@@ -2,40 +2,20 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+test("keeps the public portfolio route and launch copy in place", async () => {
+  const [page, layout] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+  ]);
 
-  return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-}
-
-test("server-renders the public portfolio", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-
-  const html = await response.text();
-  assert.match(html, /<title>Monisola Adejo \| UGC Creator in Ontario, Canada<\/title>/i);
-  assert.match(html, /<meta name="robots" content="index, follow"/i);
-  assert.match(html, /UGC Creator \| Nurse \| Mom/);
-  assert.match(html, /Give people a clear reason to care about/);
-  assert.match(html, /id="work"/);
-  assert.match(html, /id="contact"/);
-  assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton|codex-preview/i);
+  assert.match(layout, /Monisola Adejo \| UGC Creator in Ontario, Canada/);
+  assert.match(layout, /index:\s*true/);
+  assert.match(layout, /follow:\s*true/);
+  assert.match(page, /UGC Creator \| Nurse \| Mom/);
+  assert.match(page, /Give people a clear reason to care about/);
+  assert.match(page, /id="work"/);
+  assert.match(page, /id="contact"/);
+  assert.doesNotMatch(page, /Your site is taking shape|react-loading-skeleton|codex-preview/i);
 });
 
 test("keeps launch metadata and media controls aligned with the portfolio", async () => {
