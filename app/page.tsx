@@ -1,8 +1,8 @@
+import Image from "next/image";
 import AutoplayVideo from "./autoplay-video";
-import DeferredVideoRail from "./deferred-video-rail";
 import PortfolioGrid from "./portfolio-grid";
+import VideoRail from "./video-rail";
 import { portraits, publicVideos } from "./media-register";
-import ResponsiveImage from "./responsive-image";
 
 const heroPortrait = portraits.find((portrait) => portrait.id === "hero-fuchsia-close")!;
 const aboutPortrait = portraits.find((portrait) => portrait.id === "nursing-context")!;
@@ -12,14 +12,12 @@ const featuredWork = publicVideos.find((video) => video.id === "creator-introduc
 const productPhotos = [
   {
     src: "/media/photography/victorias-secret-fragrance-flatlay.jpg",
-    optimizedBase: "/media/optimized/victorias-secret-fragrance-flatlay-v1",
     alt: "Victoria's Secret Love Spell and Candied Berry Wonderland fragrance mists styled with pastel flowers.",
     eyebrow: "Fragrance flat lay",
     title: "Colour, composition and product detail.",
   },
   {
     src: "/media/photography/beauty-essentials-flatlay.jpg",
-    optimizedBase: "/media/optimized/beauty-essentials-flatlay-v1",
     alt: "Burt's Bees skincare, nail products and accessories arranged in a soft pastel flat lay.",
     eyebrow: "Beauty flat lay",
     title: "Everyday products, styled with care.",
@@ -95,7 +93,7 @@ export default function Home() {
             <div className="hero-credentials"><span>Ontario, Canada</span><span>On-camera, voiceover and hands-only content</span><span>Paid and organic creative</span></div>
           </div>
           <figure className="hero-media">
-            <div className="hero-image-wrap"><ResponsiveImage fallbackSrc={heroPortrait.src} optimizedBase="/media/optimized/monisola-laughing-fuchsia-close-v1" alt={heroPortrait.alt} width={900} height={1200} priority sizes="(max-width: 760px) 90vw, (max-width: 1100px) 43vw, 570px" /></div>
+            <div className="hero-image-wrap"><Image src={heroPortrait.src} alt={heroPortrait.alt} width={900} height={1200} priority unoptimized sizes="(max-width: 760px) 90vw, (max-width: 1100px) 43vw, 570px" /></div>
             <figcaption><span>MONISOLA ADEJO</span><span>On camera. On brief. In the details.</span></figcaption>
             <p className="hero-media-note">A capable adult presence for brands that value clarity.</p>
           </figure>
@@ -112,7 +110,7 @@ export default function Home() {
           <PortfolioGrid videos={publicVideos.filter((video) => video.id !== featuredWork.id)} />
           <section className="photography-showcase" aria-labelledby="photography-title">
             <div className="photography-heading"><p className="eyebrow">Product photography</p><h3 id="photography-title">Styled product moments with a point of <em>view.</em></h3><p>Thoughtful flat lays with colour, texture and a clear focus on what makes the product feel special.</p></div>
-            <div className="photography-grid">{productPhotos.map((photo, index) => <figure className={`product-photo product-photo-${index + 1}`} key={photo.src}><ResponsiveImage fallbackSrc={photo.src} optimizedBase={photo.optimizedBase} alt={photo.alt} width={1400} height={1800} sizes="(max-width: 640px) 100vw, 50vw" /><figcaption><span>{photo.eyebrow}</span><strong>{photo.title}</strong></figcaption></figure>)}</div>
+            <div className="photography-grid">{productPhotos.map((photo, index) => <figure className={`product-photo product-photo-${index + 1}`} key={photo.src}><Image src={photo.src} alt={photo.alt} width={1400} height={1800} unoptimized sizes="(max-width: 640px) 100vw, 50vw" /><figcaption><span>{photo.eyebrow}</span><strong>{photo.title}</strong></figcaption></figure>)}</div>
           </section>
         </section>
 
@@ -122,7 +120,7 @@ export default function Home() {
             <h2 id="visual-editorial-title">Every brief gets more than a talking <em>point.</em></h2>
             <p>It gets the texture, the movement, the product moment and the real-life context that makes someone pause.</p>
           </div>
-          <DeferredVideoRail items={publicVideos.map((video) => ({ id: video.id, src: video.src, poster: video.poster, title: video.title, label: video.creativeFunction, captions: video.id === "makeup-routine" ? "/media/captions/makeup-routine.vtt" : undefined }))} />
+          <VideoRail items={publicVideos.map((video) => ({ id: video.id, src: video.src, poster: video.poster, title: video.title, label: video.creativeFunction, captions: video.id === "makeup-routine" ? "/media/captions/makeup-routine.vtt" : undefined }))} />
         </section>
 
         <section className="create-section" id="create" aria-labelledby="create-title">
@@ -132,9 +130,9 @@ export default function Home() {
 
         <section className="brand-fit" aria-labelledby="brand-fit-title"><div className="brand-fit-heading"><p className="eyebrow">Brand fit</p><h2 id="brand-fit-title">A wider range of brands belongs in this <em>portfolio.</em></h2><p>My work suits products and services that benefit from clear explanation, a believable setting and a grounded presence—across household, lifestyle, beauty, wellness and consumer audiences.</p></div><div className="brand-grid">{brandFits.map(([title, description]) => <article key={title}><h3>{title}</h3><p>{description}</p></article>)}</div><p className="brand-fit-close">Have something else in mind? <a href={`mailto:${email}?subject=UGC%20brief%20for%20Monisola%20Adejo`}>Send the brief.</a> If I am right for the customer and the message, I will tell you how I would approach it.</p></section>
 
-        <section className="about-section" id="about" aria-labelledby="about-title"><div className="about-photo"><ResponsiveImage fallbackSrc={aboutPortrait.src} optimizedBase="/media/optimized/monisola-scrubs-full-v1" alt={aboutPortrait.alt} width={740} height={940} sizes="(max-width: 760px) 100vw, 45vw" /><p>Clear explanation, real presence, a thoughtful eye.</p></div><div className="about-copy"><p className="eyebrow">About Monisola</p><h2 id="about-title">Hello, I’m <em>Monisola.</em></h2><p>I am a nurse, a mom of 3 boys, a PMP- and Scrum-certified professional, and a creator based in Ontario, Canada. My working life has taught me to listen closely, explain things in plain language and keep track of details when several things are happening at once. Those habits are useful on a shoot and even more useful when a brand needs someone who can read a brief properly.</p><p>I am comfortable speaking on camera, demonstrating a process and taking the viewer through a product without forcing the performance. I pay attention to the questions a customer is likely to have, the details the camera needs to show and the pace at which the message becomes easy to follow.</p><a className="inline-link dark-link" href={tiktok} target="_blank" rel="noreferrer">See Monisola on TikTok <span aria-hidden="true">↗</span></a></div></section>
+        <section className="about-section" id="about" aria-labelledby="about-title"><div className="about-photo"><Image src={aboutPortrait.src} alt={aboutPortrait.alt} width={740} height={940} unoptimized sizes="(max-width: 760px) 100vw, 45vw" /><p>Clear explanation, real presence, a thoughtful eye.</p></div><div className="about-copy"><p className="eyebrow">About Monisola</p><h2 id="about-title">Hello, I’m <em>Monisola.</em></h2><p>I am a nurse, a mom of 3 boys, a PMP- and Scrum-certified professional, and a creator based in Ontario, Canada. My working life has taught me to listen closely, explain things in plain language and keep track of details when several things are happening at once. Those habits are useful on a shoot and even more useful when a brand needs someone who can read a brief properly.</p><p>I am comfortable speaking on camera, demonstrating a process and taking the viewer through a product without forcing the performance. I pay attention to the questions a customer is likely to have, the details the camera needs to show and the pace at which the message becomes easy to follow.</p><a className="inline-link dark-link" href={tiktok} target="_blank" rel="noreferrer">See Monisola on TikTok <span aria-hidden="true">↗</span></a></div></section>
 
-        <section className="perspective-section" aria-labelledby="perspective-title"><div className="perspective-copy"><p className="eyebrow eyebrow-light">Why this perspective is commercially useful</p><h2 id="perspective-title">Your customer can recognise themselves <em>here.</em></h2><p>Monisola can appear in a campaign as a professional, a mom of 3 boys, a beauty customer, a traveller, a homeowner, a careful shopper or simply someone trying something and giving it a fair assessment. These are familiar positions from which many buying decisions are made.</p><p>Her nursing background supports calm explanation, attention to instructions and confidence with detailed products. Being a mom gives her an immediate understanding of shared routines, household choices and limited time. Her PMP and Scrum training add a practical advantage behind the camera: organised communication, respect for the brief and a sensible response to feedback.</p><p>The result is a creator who can handle a polished beauty close-up, a household demonstration, an app walkthrough, a food preparation sequence or a direct explanation with the same steady presence.</p></div><div className="perspective-photo"><ResponsiveImage fallbackSrc={editorialPortrait.src} optimizedBase="/media/optimized/monisola-fuchsia-full-v1" alt={editorialPortrait.alt} width={850} height={1100} sizes="(max-width: 760px) 88vw, 38vw" /><span>ON CAMERA / ON BRIEF / ON POINT</span></div></section>
+        <section className="perspective-section" aria-labelledby="perspective-title"><div className="perspective-copy"><p className="eyebrow eyebrow-light">Why this perspective is commercially useful</p><h2 id="perspective-title">Your customer can recognise themselves <em>here.</em></h2><p>Monisola can appear in a campaign as a professional, a mom of 3 boys, a beauty customer, a traveller, a homeowner, a careful shopper or simply someone trying something and giving it a fair assessment. These are familiar positions from which many buying decisions are made.</p><p>Her nursing background supports calm explanation, attention to instructions and confidence with detailed products. Being a mom gives her an immediate understanding of shared routines, household choices and limited time. Her PMP and Scrum training add a practical advantage behind the camera: organised communication, respect for the brief and a sensible response to feedback.</p><p>The result is a creator who can handle a polished beauty close-up, a household demonstration, an app walkthrough, a food preparation sequence or a direct explanation with the same steady presence.</p></div><div className="perspective-photo"><Image src={editorialPortrait.src} alt={editorialPortrait.alt} width={850} height={1100} unoptimized sizes="(max-width: 760px) 88vw, 38vw" /><span>ON CAMERA / ON BRIEF / ON POINT</span></div></section>
 
         <section className="process-section" id="process" aria-labelledby="process-title"><div className="process-heading"><p className="eyebrow">How it works</p><h2 id="process-title">A clear process from brief to <em>delivery.</em></h2></div><ol className="process-list">{process.map(([title, description], index) => <li key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{description}</p></li>)}</ol><p className="process-note">Need several concepts, raw footage or alternate hooks? Include them in the brief so the production can be planned efficiently.</p></section>
 
