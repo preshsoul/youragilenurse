@@ -34,7 +34,7 @@ export const metadata: Metadata = {
         url: "/og-share-v1.jpg",
         width: 1200,
         height: 630,
-        alt: "Monisola Adejo — UGC Creator, Nurse and Mom.",
+        alt: "Monisola Adejo, UGC Creator, Nurse and Mom.",
       },
     ],
   },
